@@ -1,3 +1,4 @@
+#pragma once
 #include "Probability.h"
 
 
@@ -11,14 +12,14 @@ Probability operator &(Probability &A, Probability &B)
 //Probability of A OR B
 Probability operator |(Probability &A, Probability &B)
 {
-   double temp = A.GetProb() + B.GetProb();
+   double temp = A.GetProb() + B.GetProb() - (A&B).GetProb();
    return Probability(temp);
 };
 
 //Probability of A OR B but NOT BOTH
 Probability operator ^(Probability &A, Probability &B)
 {
-   double temp = A.GetProb() + B.GetProb() - (A&B).GetProb();
+   double temp = A.GetProb() + B.GetProb() - 2*(A&B).GetProb();
    return Probability(temp);
 };
 
